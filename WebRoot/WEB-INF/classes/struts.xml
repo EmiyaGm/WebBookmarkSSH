@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.devMode" value="false"></constant>
+	<package name="shop" extends="struts-default" namespace="/">
+		<!-- 配置首页访问的action -->
+		<global-results>
+			<result name="login">/WEB-INF/login.jsp</result>
+			<result name="msg">/WEB-INF/msg.jsp</result>
+		</global-results>
+		<!-- 配置用户模块的action -->
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="registPage">regist.jsp</result>
+			<result name="input">regist.jsp</result>
+			<result name="loginPage">login.jsp</result>
+			<result name="loginSuccess">index.jsp</result>
+			<result name="quit">index.jsp</result>
+			<result name="checkcodeFail">regist.jsp</result>
+			<result name="registSuccess">index.jsp</result>
+		</action>
+		
+		<!-- 验证码的action -->
+		<action name="checkImg" class="checkImgAction"></action>
+		
+		<action name="bookmark_*" class="bookmarkAction" method="{1}">
+			<result name="findByUsernameSuccess">list.jsp</result>
+			<result name="addSuccess" type="redirectAction">bookmark_findByUsername.action?page=1</result>
+			<result name="deleteSuccess" type="redirectAction">bookmark_findByUsername.action?page=1</result>
+			<result name="editSuccess" type="redirectAction">bookmark_findByUsername.action?page=1</result>
+			<result name="findByIdSuccess">edit.jsp</result>
+		</action>
+		
+		<action name="type_*" class="typeAction" method="{1}">
+			<result name="addSuccess">index.jsp</result>
+		</action>
+		
+	</package>
+
+</struts>    
